@@ -1,0 +1,25 @@
+server:
+  port: 8001
+
+#spring: #bootstrap中配置
+#  cloud:
+#    nacos:
+#      discovery:
+#        server-addr: 127.0.0.1:8848
+#  application:
+#    name: cloud-provider-service
+  main:
+    # Spring Boot 2.1 需要设定 dubbo-spring-cloud 使用说明
+    #链接：https://github.com/alibaba/spring-cloud-alibaba/blob/master/spring-cloud-alibaba-examples/spring-cloud-alibaba-dubbo-examples/README_CN.md
+    allow-bean-definition-overriding: true
+dubbo:
+  scan:
+    base-packages: com.hjh.cloud.service
+  protocol:
+    #dubbo协议
+    name: dubbo
+    # dubbo 协议端口（ -1 表示自增端口，从 20880 开始）
+    port: -1
+  registry:
+    # 挂载到 Spring Cloud 注册中心
+    address: spring-cloud://localhost
